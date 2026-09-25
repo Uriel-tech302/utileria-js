@@ -83,7 +83,7 @@ console.log(calcularDescuento(1500, 10));
 
 ## Formulario y Modal funcionando
 <img width="1918" height="1093" alt="Parte_4" src="https://github.com/user-attachments/assets/44f2deaa-82c5-4832-a1e9-76a79c62597d" />
-<img width="1920" height="1200" alt="Parte_3" src="https://github.com/user-attachments/assets/49bbda99-9729-4a33-9b45-0f67ea096ad7" />
+<img width="1627" height="927" alt="Captura de pantalla 2026-09-24 205954" src="https://github.com/user-attachments/assets/3566a3f5-1647-4074-8541-1abc4ca9f33c" />
 <img width="1918" height="1090" alt="Parte_5" src="https://github.com/user-attachments/assets/67737c53-a258-488d-98df-c083ec95da9b" />
 
 ## Video demostrativo
