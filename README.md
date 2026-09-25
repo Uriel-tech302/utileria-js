@@ -6,8 +6,6 @@
 
 **Proyecto:** Utilería JS
 
-**Carrera:** Ingeniería en Sistemas Computacionales, ITO
-
 ## ¿Qué problema resuelve?
 
 Esta librería JavaScript permite validar datos comunes dentro de formularios web sin depender de frameworks pesados. Su objetivo es reutilizar funciones nativas para validar correos electrónicos, nombres, números de teléfono, fechas de nacimiento y obligar al uso de contraseñas seguras. 
