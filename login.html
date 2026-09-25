@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Login de Acceso</h1>
+    
+    <form id="loginForm">
+        <div>
+            <label for="loginCorreo">Correo Electrónico:</label>
+            <input type="email" id="loginCorreo" required>
+            <span id="errorLoginCorreo" style="color: red; display: none; font-size: 12px;">Formato de correo inválido.</span>
+        </div>
+        <br>
+        <div>
+            <label for="loginPassword">Contraseña:</label>
+            <input type="password" id="loginPassword" required>
+            <span id="errorLoginPassword" style="color: red; display: none; font-size: 12px;">La contraseña debe tener mínimo 8 caracteres, incluir una mayúscula, una minúscula, un número y un carácter especial.</span>
+        </div>
+        <br>
+        <button type="submit">Ingresar</button>
+
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.html" style="color: #007BFF; text-decoration: none; font-weight: bold;">Regístrate aquí</a>
+        </div>
+    </form>
+
+    <p id="mensajeLogin" style="font-weight: bold; margin-top: 15px; text-align: center; font-size: 18px;"></p>
+
+  
+    <script src="js/utileria.js"></script>
+    
+
+    <script>
+        const formLogin = document.getElementById('loginForm');
+        const mensajeLogin = document.getElementById('mensajeLogin');
+
+        formLogin.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const correo = document.getElementById('loginCorreo').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            let esValido = true;
+
+            if (!validarCorreo(correo)) {
+                document.getElementById('errorLoginCorreo').style.display = 'block';
+                esValido = false;
+            } else {
+                document.getElementById('errorLoginCorreo').style.display = 'none';
+            }
+
+            if (!validarPassword(password)) {
+                document.getElementById('errorLoginPassword').style.display = 'block';
+                esValido = false;
+            } else {
+                document.getElementById('errorLoginPassword').style.display = 'none';
+            }
+
+        
+            if (esValido) {
+                mensajeLogin.style.color = "#28a745"; 
+                mensajeLogin.textContent = "Validación aceptada. Usuario y contraseña correctos.";
+            } else {
+                mensajeLogin.textContent = "";
+            }
+        });
+    </script>
+</body>
+</html>

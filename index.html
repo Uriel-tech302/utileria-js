@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Principal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <h1>Registro de Usuario</h1>
+    
+    <form id="registroForm">
+        <div>
+            <label for="nombre">Nombre (Solo letras):</label>
+            <input type="text" id="nombre" required>
+            <span id="errorNombre" style="color: red; display: none; font-size: 12px;">Contiene caracteres inválidos.</span>
+        </div>
+        
+        <div>
+            <label for="telefono">Teléfono (Máx 10 dígitos):</label>
+            <input type="number" id="telefono" required>
+            <span id="errorTelefono" style="color: red; display: none; font-size: 12px;">Debe tener máximo 10 dígitos.</span>
+        </div>
+        
+        <div>
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" required>
+            <span id="errorCorreo" style="color: red; display: none; font-size: 12px;">Formato de correo inválido.</span>
+        </div>
+
+        <div>
+            <label for="passwordRegistro">Contraseña:</label>
+            <input type="password" id="passwordRegistro" required>
+            <span id="errorPassword" style="color: red; display: none; font-size: 12px;">Mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.</span>
+        </div>
+        
+        <div>
+            <label for="fechaNac">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNac" required>
+        </div>
+        
+        <button type="submit">Registrar y Validar</button>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="login.html" style="color: #007BFF; text-decoration: none; font-weight: bold;">Ir a login</a>
+        </div>
+    </form>
+
+    <div id="modalEdad" class="modal">
+        <div class="modal-content">
+            <h2>Resultado del Registro</h2>
+            <p id="mensajeModal"></p>
+            <button id="cerrarModal">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/utileria.js"></script>
+    
+    <script>
+        const inputFecha = document.getElementById('fechaNac');
+        const fechaHoy = new Date().toISOString().split('T')[0]; 
+        inputFecha.setAttribute('max', fechaHoy); 
+
+        const form = document.getElementById('registroForm');
+        const modal = document.getElementById('modalEdad');
+        const btnCerrar = document.getElementById('cerrarModal');
+        const mensajeModal = document.getElementById('mensajeModal');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const correo = document.getElementById('correo').value;
+            const password = document.getElementById('passwordRegistro').value; 
+
+            let esValido = true;
+
+            if (!soloLetras(nombre)) {
+                document.getElementById('errorNombre').style.display = 'block';
+                esValido = false;
+            } else {
+                document.getElementById('errorNombre').style.display = 'none';
+            }
+
+            if (!validarLongitud(telefono, 10)) {
+                document.getElementById('errorTelefono').style.display = 'block';
+                esValido = false;
+            } else {
+                document.getElementById('errorTelefono').style.display = 'none';
+            }
+
+            if (!validarCorreo(correo)) {
+                document.getElementById('errorCorreo').style.display = 'block';
+                esValido = false;
+            } else {
+                document.getElementById('errorCorreo').style.display = 'none';
+            }
+            if (!validarPassword(password)) {
+                document.getElementById('errorPassword').style.display = 'block';
+                esValido = false;
+            } else {
+                document.getElementById('errorPassword').style.display = 'none';
+            }
+
+            if (esValido) {
+                if (esValido) {
+                const valorFecha = document.getElementById('fechaNac').value;
+                const edad = calcularEdad(valorFecha);
+                const mayor = esMayorDeEdad(valorFecha);
+                let textoMayor = mayor ? "Eres mayor de edad." : "Eres menor de edad.";
+                mensajeModal.textContent = `Hola ${nombre}, tu registro fue exitoso. Tienes ${edad} años. ${textoMayor}`;
+                modal.style.display = "block";
+                }
+            }
+        });
+
+        btnCerrar.addEventListener('click', function() {
+            modal.style.display = "none";
+            form.reset(); 
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>
